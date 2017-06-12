@@ -1,0 +1,81 @@
+Here we describe how the SMO algorithm \cite{Platt1999} solves the problem in Eq. \ref{eq:dual} for two Lagrange multipliers, $\lambda_1$ and $\lambda_2$. 
+All quantities that refer to the first multiplier have a subscript $1$ and all quantities that refer to the second multiplier have a subscript $2$. 
+SMO first computes the constraints on these multipliers and then solves the problem (Eq. \ref{eq:dual}) for the constrained maximum. 
+The inequality constraints in Eq. \ref{eq:dual} force the two multipliers to lie within a box $[0,~C_1]\times[0,~C_2]$, while the equality constraints 
+force the two multipliers to lie on a diagonal line segment:
+%
+%$$\sum_j y_{j}\lambda_{j} = 0$$
+%we get that $d$ must obey equation:
+  \begin{eqnarray}
+y_1 \lambda_1 + y_2 \lambda_2 = %const=\gamma
+\gamma
+\label{eq:constraint}
+ \end{eqnarray}
+ This equation explains why we need to optimize two Lagrange multipliers simulteniously. %if SMO optimizes only one multiplier
+Precisely, it is not possible to optimize a single multiplier without breaking the equality constraints in Eq. \ref{eq:dual} and, subsequently, breaking the constraints (Eq. \ref{eq:constraint}).
+%and condition:
+%$$ 0 \leq \lambda_{j} \leq C_{j} $$
+
+Without loss of generality, SMO first computes the second Lagrange multiplier $\lambda_2$ and then expresses the ends of the diagonal line segment in terms of $\lambda_2$. 
+The following lower and upper bounds, $L_2$ and $H_2$, apply to  $ \lambda_2$: 
+%Assuming 
+%It is easy to show that lower and upper boundaries from $L\leq d_2 \leq H$ will be equal to:
+\begin{enumerate}
+ \item if $y_1=y_2$:
+  \begin{eqnarray*}
+   L_2&=&\max(0,~\gamma y_2 - C_1)\\
+   H_2&=&\min(C_2,~\gamma y_2)
+  \end{eqnarray*}
+ \item if $y_1 \neq y_2$:
+  \begin{eqnarray*}
+   L_2&=&\max(0,~\gamma y_2)\\
+   H_2&=&\min(C_2,~ \gamma y_2 + C_1)
+  \end{eqnarray*}
+\end{enumerate}
+%
+On the next step SMO computes the location of the unconstrained maximum of the Lagrangian with respect to $\lambda_2$:
+\begin{eqnarray}
+\frac {\partial \mathcal{L}(\lambda_1,\lambda_2) }{\partial \lambda_2} = 0
+\end{eqnarray}
+The corresponding unconstrained  $\lambda_2$ will be:
+%The unconstrained maximum $\lambda_2$ will be:
+\begin{eqnarray}
+\lambda_2^{\text{new}}=\lambda_2^{\text{old}} + y_2 \frac{
+(\mathbf{x}_{2} 
+- \mathbf{x}_{1})\cdot\mathbf{w}^{\text{old}} + y_1 - y_2
+}{\nu}
+%+y_2(y_2 - y_1
+%+ (\mathbf{x}_{i1} 
+%- \mathbf{x}_{i2})\cdot\mathbf{w}^{old})
+\end{eqnarray}
+Next, SMO computes the constrained maximum by clipping the unconstrained maximum to the ends of the line segment:
+%The constrained maximum:
+%After we verify if the new value of $\lambda_2^{new}$ meets the bounds:
+  \begin{eqnarray}
+   \lambda_2^{\text{new,clipped}} = 
+  \begin{cases}
+ L,&\text{if } \lambda_2^{\text{new}}\le L\\
+  \lambda_2^{\text{new}},&\text{if }L<\lambda_2^{\text{new}}<H\\
+ H,&\text{if }\lambda_2^{\text{new}}\ge H
+\end{cases}
+    \end{eqnarray}
+Finally, SMO determines the value of  $\lambda_1$ from the new clipped value of $\lambda_2$: 
+%The new unconstrained value of $ \lambda_1^{\text{new}}$  will be:
+ \begin{eqnarray}
+   \lambda_1^{\text{new}}&=&\lambda_1^{\text{old}} - y_1 y_2 ( \lambda_2^{\text{new,clipped}}- \lambda_2^{\text{old}})
+ \end{eqnarray}
+%And finally, we verify if the new value of $\lambda_1^{\text{new,clipped}}$ meets its bounds, preserving the constraint (\ref{eq:constraint}):
+%\begin{eqnarray}
+%   \lambda_2^{new}&=&\max(\lambda_2^{new},~L_2)\\
+%   \lambda_2^{new}&=&\min(\lambda_2^{new},~H_2)
+%\end{eqnarray}
+
+%The value $d_2$ that minimizes lagrangian will be:
+%$$\lambda_2^{new}=\lambda_2 + \frac{y_2 ( E_2 - E_1)}{\nu}$$
+%where $E_i = \sum_k d_k y_k \mathbf{x}_k\cdot\mathbf{x_i}-y_i q_i$ -- classification error for vector number $i$ and $\nu$ -- second derivative of
+%$L^*$, that stays the same as in original algorithm. 
+%After that, we crop $d_2$ to meet the inequality $L\leq d_2 \leq H$. 
+%The rest of the SMO algorithm stays the same as the one originally proposed by Platt \cite{Platt1998}. 
+
+%We use the following stopping criterion: $\left|\frac{L^*_{new} - L^*_{old}}{L^*_{old}}\right| < \epsilon$. In the Platt's paper it is shown that 
+%the consequent iterations are converging to the solution. This statement is easily generalized to our case.

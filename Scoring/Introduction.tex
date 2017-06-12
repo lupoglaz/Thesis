@@ -1,0 +1,14 @@
+As was described in the introduction, scoring method is used to filter out false-positive predictions of rigid-body docking step and refine those close to the
+native conformation of a protein-protein complex. Therefore the method of scoring has a decisive role in success of the whole docking workflow. 
+
+In this section
+we propose a new method to derive scoring functions. We base our method on separation of the native structures and computationally generated non-native conformations of a complex (decoys). Most of
+previously used algorithms solving this problem separate all the decoys from all the decoys simultaneously. The key new idea behind our algorithm is that the decoys of 
+a particular complex should be separated from its native structure only. However the form of the scoring potentials should be the same for all the dataset. Based on these
+prepositions we show that this problem leads to the well-defined convex quadratic optimization problem. We measure the performance of the scoring functions obtained 
+on the commonly used benchmarks. We show that our algorithm has inherent stability against overfitting. Also, due to the properties of the basis we used our scoring 
+potentials show some interesting coarse-graining properties.
+
+Given the widely recognized importance of water molecules at the protein-protein interface we also developed potentials 
+for the prediction of water molecules relying on the general ideology of the scoring potentials we developed for the 
+protein-protein contacts.

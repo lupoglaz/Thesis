@@ -1,0 +1,44 @@
+As was already mentioned in the introduction, an important class of algorithms in computer science and structural biology deals with the exhaustive search in the 
+six-dimensional space of translations and rotations of a rigid body. 
+
+Modern exhaustive search algorithms either implement the fast 3D translational
+search using the fast Fourier transform (FFT) \cite{Chacon2002,Katchalski-Katzir1992,Gabb1997,Wriggers2010,Siebert2009}
+or the fast 3D rotational search by means of the spherical harmonics decomposition
+and the FFT \cite{Kovacs2002} or even the fast 5D rotational search \cite{Kovacs2003,ritchie2008accelerating}.
+Exhaustive search is also widely used as a preliminary step preceding the
+local search or flexible refinement procedures. Thus, the quality
+and the speed of the exhaustive search algorithms have a great impact on
+the solution of the vast variety of problems. Therefore, we believe that new directions
+of research on this topic are very important and highly valuable. 
+
+In this section, we present the new HermiteFit algorithm that uses the orthogonal Hermite functions to perform exhaustive search in the 
+six-dimensional space of rigid-body motions.
+We apply this method to the problem of fitting of a high resolution X-ray structure of a protein subunit into the 
+cryo-electron microscopy (cryo-EM) density map of a protein complex.
+As a part of the new method, we developed an algorithm for the rotation of the decomposition in the Hermite basis and another algorithm for the conversion of
+the Hermite expansion coefficients into the Fourier basis.
+We demonstrate the ability of our algorithm to compete with the well--established approaches by using two examples of different difficulty, 
+the PniB conotoxin peptide and the GroEL complex. 
+%
+The first example illustrates encoding principles and demonstrates the influence of the encoding quality on the goodness of  fit. 
+%
+The second example is the gold standard of all electron density map fitting 
+algorithms. 
+%
+Our approach allows to analytically assess the quality of encoding of the Hermite basis using an estimation of the crystallographic R-factor. 
+We then compare this estimation with the one computed numerically for the PniB conotoxin density map.
+%
+Finally, we compare the speed and the fitting accuracy of our algorithm with the two popular programs, the ADP\underline{\hspace*{0.2cm}}EM fitting method and the {\em colores} program from the 
+Situs package and demonstrate that HermiteFit spends less running time per one search point compared to the two other methods while attaining a similar accuracy.
+
+The HermitFit algorithm can be straightforwardly applied to a broad class of problems in different fields of research.
+For example, one of the bottlenecks of the algorithms for molecular replacement in crystallography is the
+computation of the Fourier coefficients (structure factors) of a molecule \cite{navaza1995fast}. 
+This operation is to be precise and fast. However, the exact analytical evaluation 
+of the structure factors is too costly \cite{sayre1951calculation} when recomputing them for each rotation of the molecule. 
+Therefore, currently one uses the Sayre--Ten Eyck approach to compute the Fourier 
+coefficients \cite{ten1977efficient}. Unfortunately, one has to be very careful tuning the parameters of the electron density model and
+the grid cell size to obtain the desired precision \cite{navaza2002computation,afonine2003fast}.
+Unlike the Sayre--Ten Eyck, our algorithm offers the analytical expression for the structure factors of the Hermite decomposition of a molecule.
+%
+Finally, our approach  allows to analytically estimate the quality of encoding using, e.g., crystallographic R-factors.

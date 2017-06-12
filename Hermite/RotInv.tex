@@ -1,0 +1,56 @@
+In the previous section we described how coefficients of the Hermite decomposition change upon rotation of the density. However all intrinsic physical properties of the 
+protein should not change upon rotation and translation of the reference frame. Therefore a description of the density that is invariant under rotation and translation 
+is of great interest.
+
+The rotational invariants originally were employed in 3D object recognition by Hue et all. \ref{hu1962visual}. To construct them they used geometrical moments:
+$$M_{ijk}=\int\int\, f(x_{1},x_{2},x_{3})x_{1}^{i}x_{2}^{j}x_{3}^{k}\, dx_{1}\, dx_{2}\, dx_{3}$$
+where $f$ stands for the density described and the integration is done over all 3D space where $f$ is defined.
+
+After this peoneering work, much effort had been put into constructing invariants of geometric moments upon rotation, 
+translation, general affine transformations and even projection operators. So far, several methods are available to 
+construct systems of geometrical invariants \ref{hickman2012geometric, diao2009linear}. They are 
+sucessfully applied in 2D pattern recognistion and 3D object recognition \ref{flusser2009moments} and positioning of 3D objects \ref{taubin1991recognition}.
+
+However in many cases these moments are not the best choise. Other types of moments been investigated such as Legendre moments \ref{hosny2010new}, 
+Zernike moments \ref{venkatraman2009protein} and others\ref{mak2008extension}. The Hermite-Gaussian moments haven't been previously explored in 3D, but they showed to be very 
+useful in 2D image reconstruction \ref{yang2011image,rahman2013low}. In this section we provide a method to build 3D Hermite invariants.
+
+First, by analogy with geometric invariants let's introduce Gaussian-Hermite invariants:
+$$m_{pqr}=\int\int\int f(x,y,z)\psi_{p}(x)\psi_{q}(y)\psi_{r}(z)\, dx\, dy\, dz$$
+
+The derivation of Hermite-Gaussian moments invariants is based on the exsting geometric moments invariants. Let's denote operator of rotation in $R^{3}$ as $\mathbf{R}$:
+$r'=\mathbf{R}r$.
+Geometric rotational invariants are algebraic functions of geometric moments that do not change their values after application of $\mathbf{R}$ operator. 
+An example of such a function is:
+$$I_{1}=\mu_{200}+\mu_{020}+\mu_{002}$$
+which written in terms of integrals sums up to:
+$$I_{1}=\int\int\int f(x,y,z)(x^{2}+y^{2}+z^{2})\, dx\, dy\, dz$$
+The value of $I_{1}$ is simply a mass of the function, that is invariant upon rotations.
+Let's now look closer at the integral form of Gaussian-Hermite moments:
+$$m_{pqr}\propto \int\int\int f(x,y,z)e^{-(x^{2}+y^{2}+z^{2})/2\sigma^{2}}H_{p}(\frac{x}{\sigma})H_{q}(\frac{y}{\sigma})H_{r}(\frac{z}{\sigma})\, dx\, dy\, dz$$
+Where the coefficient of proportionality does not depend on $x,y,z$ and therefore can be ommitted. The factor in the exponent is also invariant with
+respect to the rotations and dos not influence the rotational behaviour of Hermite polynomials. Further we ommit these two factors.
+
+Hermite polynomials can be further expanded in terms of $\frac{x}{\sigma}$, $\frac{y}{\sigma}$ and $\frac{z}{\sigma}$ and therefore each Hermite moment 
+can be rewritten as the sum of monomials. For example:
+$$m_{000} \propto  \int f(x,y,z) \, dx\, dy\, dz$$
+$$m_{111} \propto  \int f(x,y,z) \left( 1 + 2\frac{x}{\sigma} \right)\left( 1 + 2\frac{y}{\sigma}\right)\left( 1 + 2\frac{z}{\sigma}\right)\, dx\, dy\, dz$$
+%$$m_{222} \propto  \int f(x,y,z) \left( -1 + 2\frac{x}{\sigma} +4\left(\frac{x}{\sigma}\right)^2 \right)\left( -1 + 2\frac{y}{\sigma} +4\left(\frac{y}{\sigma}\right)^2 \right)\left( -1 + 2\frac{z}{\sigma} +4\left(\frac{z}{\sigma}\right)^2 \right)\, dx\, dy\, dz$$
+Easy to see that $m_{111}$ behaves similar to the following combination of geometric moments:
+$$m_{111}\propto \mu_{000} + 2\left(\mu_{100}+\mu_{010}+\mu_{001}\right) + 4\left(\mu_{110}+\mu_{011}+\mu_{101}\right) + 8\mu_{111}$$
+On the other hand suppose we know several geometric invariants $I^(k) = f^k (\mu_{000},\mu_{100},\ldots)$. We now can eliminate variables $\mu_{ijk}$ in each
+geometric invariant and obtain the Gaussian-Hermite invariants.
+
+Summing up, the algorithm for deriving Gauss-Hermite invariants from geometric ones is:
+\begin{enumerate}
+ \item Get $k$-th geometric invariant $I_{k}^{G}(\mu_{000},...,\mu_{PQR})$
+ \item From equations $m_{lmn}=M_{lmn}(\mu_{000},\ldots,\mu_{lmn}),~~ l=0\ldots L,~~ m=0 \ldots M,~~ p=0\ldots P$
+  derive expressions for $\mu_{lmn}=M_{lmn}(m_{000},\ldots,m_{lmn}),~~ l=0\ldots L,~~ m=0 \ldots M,~~ p=0\ldots P$,
+  where $P,Q,R \leq K$
+ \item Substitute $\mu_{lmn}$ in geometric invariant $I_{k}$ for $M_{lmn}$
+\end{enumerate}
+
+The second step of the algorithm is valid because from the definition of Hermite polynomials the powers in products of $xyz$ do not exceed the order of moment. 
+And therefore we have system of $K$ equations dependent on $K$ variables.
+
+ 

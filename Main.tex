@@ -1,0 +1,167 @@
+\documentclass[12pt,twoside]{report}
+\usepackage[utf8]{inputenc}
+
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
+
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{float}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amsthm,amssymb,amsmath}
+% \usepackage{multirow} % for tables
+ \usepackage[english,british]{babel}
+ \usepackage{textcomp}
+%\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{hyperref}
+\newtheorem{lemma}{Lemma}
+\newtheorem*{remark}{Remark}
+
+
+\usepackage[table,usenames,dvipsnames]{xcolor}
+
+\usepackage{tikz}
+%\usepackage{multirow}
+\usetikzlibrary{shapes,arrows}
+\usepackage{pdflscape}
+\usepackage{rotating}
+
+\usepackage{geometry}
+ 
+
+\usepackage{xr-hyper} 
+%\usepackage[colorlinks=true, pagebackref=true]{hyperref}
+
+\RequirePackage{color}
+\newcommand\red[1]{\textcolor{red}{#1}}
+\newcommand\blue[1]{\textcolor{blue}{#1}}
+\newcommand\green[1]{{\bf\textcolor{ForestGreen}{#1}}}
+\definecolor{orange}{rgb}{0.7,0.3,0}
+\newcommand\orange[1]{\textcolor{orange}{#1}}
+\newcommand\mycol[1]{\textcolor{orange}{#1}}
+
+\usepackage{longtable}
+\setcounter{secnumdepth}{5}
+
+\usepackage{fancyhdr}
+%\pagestyle{fancy}
+
+
+\input{Cover/oficialTitle.tex}
+
+
+\begin{document}
+\MakeUGthesePDG    %% très important pour générer la couvérture de thèse
+
+
+
+\chapter*{Abstract}
+The phenotype of every known living organism is determined mainly by the complicated interactions between the proteins produced in this organism. Understanding
+the orchestration of the organismal responses to the external or internal stimuli is based on the understanding of the interactions of individual proteins
+and their complexes structures. The prediction of a complex of two or more proteins is the problem of the protein-protein docking field. Docking algorithms 
+usually have two major steps: exhaustive 6D rigid-body search followed by the scoring. In this work we made contribution to both of these steps. 
+We developed a novel algorithm for 6D exhaustive search, HermiteFit. It is based on Hermite decomposition of 3D functions into the Hermite basis. 
+We implemented this algorithm in the program for fitting low-resolution electron density maps. We showed that it outperforms existing algorithms 
+in terms of time-per-point while maintaining the same output model accuracy. We also developed a novel approach to computation of a scoring function, 
+which is based on simple logical arguments and avoids an ambiguous com- putation of the reference state. We compared it to the existing scoring functions 
+on the widely used protein-protein docking benchmarks. Finally, we developed an approach to include water-protein interactions into the scoring functions 
+and val- idated our method during the Critical Assessement of Protein Interactions round 47. 
+
+\chapter*{Dedication}
+To my parents.
+
+\chapter*{Acknowledgements}
+I would like to thank my supervisor Valentin Gordely and co-supervisor Sergey Grudinin for their guidance during my thesis. I also thank my parents, brother and all the people
+I was lucky to work with for their support.
+
+\listoffigures 
+\newpage
+\listoftables
+\newpage
+
+\tableofcontents
+
+
+\newpage
+\chapter{Introduction}
+
+  \section{Role of proteins and their interactions in the cell}
+  \input{Intro/RoleOfPPInteractions.tex}
+  
+  \newpage
+  
+  \section{Experimental methods to probe protein-protein interactions}
+  \input{Intro/MethodsExperimental.tex}
+  
+  \newpage
+  
+  \section{Computational methods to probe protein-protein interactions}
+  \input{Intro/MethodsComputational.tex}
+  
+  \newpage
+  
+  \section{Aim of work}
+  \input{Intro/Aim.tex}
+   
+\newpage
+\chapter{Hermite fitting}
+
+  \section{Introduction}
+  \input{Hermite/Introduction.tex}
+
+  \newpage
+  
+  \section{Methods}
+  \input{Hermite/Methods.tex}
+
+  \newpage
+  
+  \section{Analysis}
+  \input{Hermite/Analysis.tex}
+  
+  \newpage
+  
+  \section{Results and Discussion}
+  \input{Hermite/Results.tex}
+
+  \newpage
+  
+\chapter{Scoring functions for protein-protein docking}
+
+  \section{Introduction}
+  \input{Scoring/Introduction.tex}
+  
+  \newpage
+  
+  \section{Methods}
+  \input{Scoring/Methods.tex}
+  
+  \newpage
+
+  \section{Results and Discussion}
+  \input{Scoring/Results.tex}
+
+  \newpage
+  
+\chapter{Conclusion and outlook}
+\input{Conclusion.tex}
+
+\appendix
+\chapter{Dual optimization problem}
+\label{Ch:appendixDual}
+\input{Scoring/AppendixDual}
+\chapter{Sequential minimal optimization algorithm}
+\label{Ch:AppendixSMO}
+\input{Scoring/AppendixSMO}
+\chapter{Docking benchmarks results}
+\input{Scoring/tables/zdockTexTableCompareHomologs}
+\input{Scoring/tables/rosettaTexTableCompHomologs}
+
+
+  
+\bibliographystyle{plain}
+\bibliography{Intro/Citations/IntroCitations.bib,Bibliography/CitationsHermite.bib,Bibliography/CitationsScoring.bib,Bibliography/WaterBibliography.bib}
+
+\end{document}

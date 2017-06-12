@@ -1,0 +1,39 @@
+\usepackage[a4paper]{meta-donnees}
+
+\Specialite{Physique pour les Sciences du Vivant}
+\Arrete{}
+\Auteur{Georgy Derevyanko}
+\Directeur{Valentin Gordely}
+\CoDirecteur{Sergei Grudinin}    %%optionnel : à décommenter et à renseigenr si présence d'un Co-directeur de thèse
+\Laboratoire{Membranes}
+\EcoleDoctorale{École doctorale de physique}         
+\Titre{Structure-based algorithms for protein-protein interactions}
+%\Soustitre{}      %%optionnel : à décommenter et à renseigenr si présence d'un sous-titre de thèse
+\Depot{}       
+
+
+% Commande pour création de nouvelles catégories dans le jury:
+
+%\UGTNewJuryCategory{...NomDeLaCategorie...}{...Definition...}
+
+% Exemple \UGTNewJuryCategory{UGTFamille}{Membre de la famille} que nous ajoutons dans la commande \Jury ci-dessous sous la forme \UGTFamille{Jean Rousseau}{(...titre_et_affiliation...s'il_y_en_a...)}
+
+
+\Jury{
+\UGTPresident{Mr, Valentin GORDELIY}{ }
+\UGTPresidente{...Civilité, Grégory DURAND}{...titre-et-affiliation...}
+
+\UGTRapporteur{...Civilité, Prénom-et-Nom...}{Université d'Avignon et des Pays de Vaucluse}      %% 1er rapporteur
+\UGTRapporteur{...Civilité, Prénom-et-Nom...}{...titre-et-affiliation...}      %% second rapporteur
+ 
+\UGTExaminateur{...Civilité, Prénom-et-Nom...}{...titre-et-affiliation...}     %% 1er examinateur
+\UGTExaminateur{...Civilité, Prénom-et-Nom...}{...titre-et-affiliation...}     %% second examinateur
+\UGTExaminatrice{...Civilité, Prénom-et-Nom...}{...titre-et-affiliation...}    %% 3ème examinateur
+
+\UGTDirecteur{Valentin GORDELIY}{professeur, Institut de Biologie Structurale}       %% Directeur de thèse
+\UGTCoDirecteur{...Civilité, Prénom-et-Nom...}{...titre-et-affiliation...}     %% Co-Directeur de thèse s'il y en a
+
+\UGTInvite{...Civilité, Prénom-et-Nom...}{...titre-et-affiliation...}
+\UGTInvitee{...Civilité, Prénom-et-Nom...}{...titre-et-affiliation...}
+}
+

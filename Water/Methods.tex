@@ -1,0 +1,63 @@
+\subsubsection{Theory}
+
+We assume that the solvation free energy of a protein can be approximated via a linear functional $F(n(r))$, which depends on  the distribution of distances $n(r)$ between the interaction sites $k$ on the protein and water molecules around it,
+of the following form:
+\begin{eqnarray}
+\label{eq:functional}
+F(n(r))\equiv F(n^{1}(r),..,n^{M}(r)) = \sum_{k=1}^M  \int \limits_{0}^{r_{max}} n^{k}(r)U^{k}(r)~dr, 
+\label{eq:solvationFun}
+\end{eqnarray}
+where $r_{max}$ is the protein -- water cutoff interaction distance, $M$ is the number of discrete interaction sites on the protein that are located at the sites of the atomic nuclei, $n^{k}(r)$ are  the number densities of $k$th protein interaction site -- water oxygen pairs at distance $r$, and $U^{k}(r)$ are the unknown  \emph{solvation scoring functions}  that are to be determined from the training set of native protein complexes. 
+Once we determine the solvation scoring functions $U^{k}(r)$, we can compute the value of the solvation energy functional $F(n(r))$ given the positions of the protein and the surrounding water molecules.
+%
+Then, we minimize  $F(n(r))$ with respect to protein -- water distribution functions $n(r)$. The  distribution functions of the minimized functional
+will then correspond to the positions of the native water molecules around the protein.
+
+Next, we explain how we determine the unknown solvation scoring functions $U^{k}(r)$. Given a set of orthogonal functions $\xi (r)$ defined on the interval of orthogonality $[0;r_{max}]$ with a unit weight function such that
+\begin{eqnarray}
+\int \limits_{0}^{r_{max}} \xi_{i}(r) \xi_{j}(r)~dr = \delta_{i j}
+\label{eq:orth}
+\end{eqnarray}
+where $\delta_{i j}$ is the Kronecker delta function, we expand the solvation scoring functions $U^{k}(r)$ and the number densities $n^{k}(r)$ on the interval $[0;r_{max}]$ as
+
+\begin{eqnarray}
+\label{eq:expU}
+U^{k}(r)=\sum_i w_i^{k} \xi_i (r) ,~~~~r \in[0;r_{max}] \\
+n^{k}(r)=\sum_i x_i^{k} \xi_i (r) ,~~~~r \in[0;r_{max}]
+\label{eq:expg}
+\end{eqnarray}
+
+Expansion coefficients $w_i^{k}$ and $x_i^{k}$ can be determined from the orthogonality condition (\ref{eq:orth}) as 
+\begin{eqnarray}
+w_i^{k} = \int \limits_{0}^{r_{max}}U^{k}(r) \xi_i (r)~dr \\
+x_i^{k} = \int \limits_{0}^{r_{max}}n^{k}(r) \xi_i (r)~dr
+\label{eq:projection}
+\end{eqnarray}
+Finally, 
+we expand the functional $F(n(r))$ up 
+to order $P$  as
+
+\begin{eqnarray}
+\label{eq:expansion}
+F(n(r)) \approx \sum_{k=1}^M \sum_{i}^{P} w_{i}^{k}x_{i}^{k} = (\mathbf{w} \cdot \mathbf{x}),~~~~\mathbf{w}, \mathbf{x} \in \mathbb{R}^{P \times M}
+\end{eqnarray}
+
+In order to determine the unknown functions  $U^{k}(r)$, we require that for each protein complex $i$ from the training dataset,  $i=1...N$, the solvation functional 
+(\ref{eq:expansion}) takes the minimum value only for native protein -- water distributions $n^{k}_{i0}(r)$. Therefore, for each protein complex $i$, we generate $D$ 
+non-native protein -- water distributions $n^{k}_{ij}(r)$, $j=1...D$,
+and
+formulate the following  soft-margin quadratic optimization problem with respect to the solvation scoring function expansion coefficients $\mathbf{w}$:
+
+\begin{eqnarray}
+\begin{tabular}{lc}
+Minimize (in  $\mathbf{w}$, $b_j$, $\eta_{ij}$):& $\frac{1}{2} \mathbf{w}\cdot\mathbf{w}+ \sum_{ij}C_{ij}\eta_{ij}$ \\ 
+\multirow{2}{*}{Subject to:}
+&$y_{ij} \left[ \mathbf{w}\cdot \mathbf{x}_{ij}-b_j \right]-1 +\eta_{ij} \geq 0, ~ i=1...N,~j=0...D$ \\
+&$\eta_{ij} \geq 0$
+\end{tabular}
+\label{eq:svmSoftMargin}
+\end{eqnarray}
+%
+where parameters $y_{i0} = -1$ for native protein-water distributions $\mathbf{x}_{i0}$ and $y_{ij} = 1$ otherwise. 
+Parameters $C_{ij}$ can be regarded as regularization parameters.  We set $C_{i0} = C D/(D+1)$ for native protein-water distributions $\mathbf{x}_{i0}$ 
+and $C_{ij} = C/(D+1)$ otherwise, where we determine the best value for $C$  from the training set. More details can be found in \cite{Derevyanko4}.

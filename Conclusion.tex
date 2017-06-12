@@ -1,0 +1,25 @@
+The aim of the work was the development and validation of new algorithms that could lead to certain advances in the fields of exhaustive rigid-body search
+and scoring of protein-protein complexes conformations. During this work the Hermite fitting algorithm was proposed that is not only competable with
+the state-of-art approaches to this problem, but adds a new class of algorithms, that operate in Hermite functions space, to the existing ones, that 
+function if spherical harmonics and grid representations of a function. A new algorithm to obtain a scoring functions was proposed that 
+is derived from basic logical considerations about the nature of the training dataset. It avoids common unsolved problems with the reference state
+and has a valuable property of global convergence. It was applied with success to the problems of protein-protein conformations scoring as well 
+as to the prediction of positions of crystallographic water molecules at the protein-protein interaction interface. It was validated using 
+well established benchmarks and community-wide critical prediction of protein interaction assessement challenge.
+
+\subsection{Future developments}
+With the advent of the post-genomic era, the cost of whole-genome sequencing plummets and the number of sequenced organisms grows rapidly. However,
+the proteomics field still did not step into the phase of the exponential growth. Therefore I believe, that probing protein-protein interactions 
+on the scale of proteome will revolutionize the fields of interactomics, evolution and systems biology. The methods that currently applied to 
+discover protein interaction network are either large-scale, but give big number of false- positives and negatives or fit for the discovering 
+detailed picture of single protein-protein complex. Bridging the gap between these two classes of methods would be a tremendous leap forward 
+in the field of protein-protein interaction prediction.
+
+Therefore it is worth trying to optimize current rigid-body search algorithms to scale the computations up. The parallel computing paradigm and
+especially general GPU programming could lead to a considerable HermiteFit algorithm runtime reduction.
+
+In the area of scoring functions I believe that the paradigm of predefined atom types should be overcomed. The newly emerging area of dimentionality
+reduction and deep learning surely will bring new advances to the scoring field.
+
+Another direction of expanding this work is to integrate the developed algorithms into one user-friendly package for the convenient use by those who do not
+posess programming skills required to implement them.

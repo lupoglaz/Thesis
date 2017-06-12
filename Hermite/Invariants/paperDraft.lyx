@@ -1,0 +1,1730 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\branch ScalingCoeffs
+\selected 0
+\filename_suffix 0
+\color #faf0e6
+\end_branch
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+3D rotational Hermite-Gaussian moments invariants
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+Different rotational invariants are vastly used in image analysis, object
+ recognistion, protein docking, electronic density fit and other fields.
+ Thus constructing invariants for new types of moments promises the improve
+ in precision and speed of many algorithms.
+ Here we present rotational invariants for Gaussian-Hermite moments.
+\end_layout
+
+\begin_layout Standard
+The first time 3D moments rotational invariants been used in 3D object recognist
+ion was in 1963 by Hue et al.[].
+ The moments they used are so-called geometrical moments:
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+M_{ijk}=\int\int\, f(x_{1},x_{2},x_{3})x_{1}^{i}x_{2}^{j}x_{3}^{k}\, dx_{1}\, dx_{2}\, dx_{3}
+\]
+
+\end_inset
+
+After this peoneering
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ work, much effort had been put into constructing invariants of geometric
+ moments upon rotation, translation, general affine transformations and
+ even projection operators.
+ So far, several methods are available to construct systems of geometrical
+ invariants[].
+ Much work was devoted to fast coputation of invariants[].
+ They are sucessfully applied in 2D pattern recognistion and 3D object recognist
+ion[] and reconstruction[].
+\end_layout
+
+\begin_layout Standard
+However in many cases these moments are not the best choise.
+ Other types of moments been investigated such as Legendre moments, Zernike
+ moments and others[].
+ The Hermite-Gaussian moments haven't been previously explored in 3D, but
+ they showed to be very useful in 2D image reconstruction[].
+ So it's reasonable to hope that it can also improve results for 3D.
+\end_layout
+
+\begin_layout Section
+Hermite polynomials and Gaussian-Hermite moments
+\end_layout
+
+\begin_layout Standard
+The definition of Hermite polynomials is:
+\begin_inset Formula 
+\[
+H_{p}=(-1)^{p}\exp(x^{2})(d^{p}/dx^{p})\exp(-x^{2})
+\]
+
+\end_inset
+
+They are defined on the interval 
+\begin_inset Formula $(-\infty;+\infty)$
+\end_inset
+
+ and are orthogonal on it with the weight function 
+\begin_inset Formula $e^{-x^{2}}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\int e^{-x^{2}}H_{p}(x)H_{q}(x)\, dx=\delta_{pq}
+\]
+
+\end_inset
+
+Sometimes it is more convenient to hide the weight function inside the basis
+ and define Hermite-Gaussian basis functions as:
+\begin_inset Formula 
+\[
+\psi(x;\sigma)=(2^{p}p!\sqrt{\pi}\sigma)^{-1/2}\exp(-x^{2}/2\sigma^{2})H_{p}(x/\sigma)
+\]
+
+\end_inset
+
+They are orthonormal on the interval 
+\begin_inset Formula $(-\infty;+\infty)$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\int\psi_{p}\psi_{q}\, dx=\delta_{pq}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Gaussian-Hermite moments
+\end_layout
+
+\begin_layout Standard
+Suppose we defined a function in the 
+\begin_inset Formula $\mathrm{R}^{3}$
+\end_inset
+
+ space 
+\begin_inset Formula $f(x,y,z)$
+\end_inset
+
+.
+ The Gaussian-Hermite moments of this function are defined as following:
+\begin_inset Formula 
+\[
+m_{pqr}=\int\int\int f(x,y,z)\psi_{p}(x)\psi_{q}(y)\psi_{r}(z)\, dx\, dy\, dz
+\]
+
+\end_inset
+
+We see that Gaussian-Hermite moments stand for coefficiens of decomposition
+ of function in the basis of combinations of functions 
+\begin_inset Formula $\psi$
+\end_inset
+
+.
+ They are defined in analogy with well-known geometric moments:
+\begin_inset Formula 
+\[
+\mu_{pqr}=\int\int\int f(x,y,z)x^{p}y^{q}z^{r}\, dx\, dy\, dz
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Rotational invariants of Hermite-Gaussian moments
+\end_layout
+
+\begin_layout Standard
+The derivation of Hermite-Gaussian moments invariants is based on the exsting
+ geometric moments invariants.
+ Let's denote operator of rotation in 
+\begin_inset Formula $\mathrm{R^{3}}$
+\end_inset
+
+ as 
+\begin_inset Formula $Rot$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+r'=Rot(r),\, r'\in\mathrm{R^{3}},\, r\in\mathrm{R^{3}}
+\]
+
+\end_inset
+
+Geometric rotational invariants are algebraic functions of geometric moments
+ that do not change their values upon 
+\begin_inset Formula $Rot$
+\end_inset
+
+ operator.
+ An example of such a function is:
+\begin_inset Formula 
+\[
+I_{1}=\mu_{200}+\mu_{020}+\mu_{002}
+\]
+
+\end_inset
+
+which written in terms of integrals sums up to:
+\begin_inset Formula 
+\[
+I_{1}=\int\int\int f(x,y,z)(x^{2}+y^{2}+z^{2})\, dx\, dy\, dz
+\]
+
+\end_inset
+
+And the invariance of 
+\begin_inset Formula $L_{2}$
+\end_inset
+
+ norm of vector under rotations is a well known fact.
+\end_layout
+
+\begin_layout Standard
+Let's now look closer at the integral form of Gaussian-Hermite moments:
+\begin_inset Formula 
+\[
+m_{pqr}=\int\int\int f(x,y,z)e^{-(x^{2}+y^{2}+z^{2})/2\sigma^{2}}H_{p}(\frac{x}{\sigma})H_{q}(\frac{y}{\sigma})H_{r}(\frac{z}{\sigma})\, dx\, dy\, dz
+\]
+
+\end_inset
+
+The factor in the exponents is invariant under rotations.
+ And Hermite polynomials can be expanded into the sum of products 
+\begin_inset Formula $x^{l}y^{m}z^{n}$
+\end_inset
+
+.
+ This observations means that although we can not directly express 
+\begin_inset Formula $m_{pqr}$
+\end_inset
+
+ in terms of 
+\begin_inset Formula $\mu_{pqr}$
+\end_inset
+
+ of the same function due to exponent we can still see that the change of
+ 
+\begin_inset Formula $m_{pqr}$
+\end_inset
+
+ upon rotations can be expressed in terms of changes in geometric moments
+ 
+\begin_inset Formula $\mu_{pqr}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Next we note that geometric invariants are composed in the way to compensate
+ for change upon any rotations.
+ Which means that if we can construct the functions of Hermite-Gaussian
+ moments that behave upon rotations in a way similar to the geometric moments,
+ we can directly use the formulas for geometric invariants to construct
+ Hermite-Gaussian invariants.
+\end_layout
+
+\begin_layout Standard
+The algorithm of obtaining invariants is:
+\end_layout
+
+\begin_layout Enumerate
+Get 
+\begin_inset Formula $k$
+\end_inset
+
+-th geometric invariant 
+\begin_inset Formula $I_{k}^{G}(\mu_{000},...,\mu_{PQR})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+From equations 
+\begin_inset Formula $\{m{}_{lmn}=M_{lmn}(\mu_{000},...,\mu_{lmn})\,\,:\,\, l=0,\,...,\, L,\,\, m=0,\,...,\, M,\,\, p=0,\,...,\, P\}$
+\end_inset
+
+ derive expressions for 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\{\mu_{lmn}=Mu_{lmn}(m_{000},...,m_{lmn})\,\,:\,\, l=0,\,...,\, L,\,\, m=0,\,...,\, M,\,\, p=0,\,...,\, P\}$
+\end_inset
+
+.
+ This operation is valid because from the definition of Hermite polynomials
+ the powers in products of 
+\begin_inset Formula $xyz$
+\end_inset
+
+ do not exceed the order of moment.
+ And therefore we have system of 
+\begin_inset Formula $K$
+\end_inset
+
+ equations dependent on 
+\begin_inset Formula $K$
+\end_inset
+
+ variables.
+\end_layout
+
+\begin_layout Enumerate
+Substitute the 
+\begin_inset Formula $\mu_{pqr}$
+\end_inset
+
+ in the geometric invariant for 
+\begin_inset Formula $\mu_{pqr}=Mu_{pqr}(m_{000},...,m_{pqr})$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+I_{k}^{HG}=I_{k}^{G}(Mu_{pqr}(m_{000},...,m_{pqr}),...,Mu_{PQR}(m_{000},...,m_{PQR}))
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Fast protein surface decomposition
+\end_layout
+
+\begin_layout Standard
+To get the decomposition of protein surface into some basis functions we
+ have to integrate protein desity function with these basis functions of
+ certain order.
+ However, in case of Hermite functions we can derive the coefficients analytical
+ly.
+ This makes decomposition procedure extremely fast.
+ 
+\end_layout
+
+\begin_layout Standard
+In many cases protein density function is assumed to be the sum of gaussians
+ centered at atoms positions:
+\begin_inset Formula 
+\[
+P(r)=\sum_{i=0}^{N}e^{-\frac{|\mathbf{r}-\mathbf{r_{i}}|^{2}}{\alpha^{2}}}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $i$
+\end_inset
+
+ is the atom index and 
+\begin_inset Formula $\mathbf{r}_{i}$
+\end_inset
+
+ is the center of 
+\begin_inset Formula $i$
+\end_inset
+
+-th atom.
+ To obtain decomposition of 
+\begin_inset Formula $P(r)$
+\end_inset
+
+ we have to get decompositn coefficients of exponent function:
+\begin_inset Formula 
+\[
+g(x,y,z)=e^{-\frac{|\mathbf{r}-\mathbf{r_{0}}|^{2}}{\alpha^{2}}}
+\]
+
+\end_inset
+
+The 1D function will read:
+\begin_inset Formula 
+\[
+g(x)=e^{-\frac{(x-\xi)^{2}}{\alpha^{2}}}
+\]
+
+\end_inset
+
+and the coefficients in decomposition are equal:
+\begin_inset Formula 
+\begin{eqnarray*}
+\hat{g}_{n} & = & \int\, g(x)\psi_{n}(x;\sigma)\, dx\\
+ & = & \frac{n!}{\sqrt{2^{n}n!\sqrt{\pi}\sigma}}\sum_{m=0}^{[\frac{n}{2}]}\frac{(-1)^{m}}{m!(n-2m)!}\int\, e^{-\frac{(x-\xi)^{2}}{\alpha^{2}}}e^{-\frac{x^{2}}{2\sigma^{2}}}(\frac{2x}{\sigma})^{n-2m}\, dx\\
+ & = & \frac{n!}{\sqrt{2^{n}n!\sqrt{\pi}\sigma}}\sum_{m=0}^{[\frac{n}{2}]}\frac{(-1)^{m}}{m!(n-2m)!}e^{-\frac{\xi^{2}}{\alpha^{2}}\left(1-\frac{1}{\alpha^{2}\beta^{2}}\right)}\int e^{-\left(x\beta-\frac{\xi}{\alpha^{2}\beta}\right)^{2}}(\lambda x)^{k(m,n)}dx\\
+ & = & \frac{n!e^{-\frac{\xi^{2}}{\alpha^{2}}\left(1-\frac{1}{\alpha^{2}\beta^{2}}\right)}}{\sqrt{2^{n}n!\sqrt{\pi}\sigma}}\sum_{m=0}^{[\frac{n}{2}]}\frac{(-1)^{m}}{m!(n-2m)!}\int e^{-\beta^{2}\left(x-\frac{\xi}{\alpha^{2}\beta^{2}}\right)^{2}}(\lambda(x-\frac{\xi}{\alpha^{2}\beta^{2}})+\frac{\lambda\xi}{\alpha^{2}\beta^{2}})^{k(m,n)}dx
+\end{eqnarray*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\beta^{2}=\frac{1}{2\sigma^{2}}+\frac{1}{\alpha^{2}}$
+\end_inset
+
+ , 
+\begin_inset Formula $\lambda=\frac{2}{\sigma}$
+\end_inset
+
+ and 
+\begin_inset Formula $k(m,n)=n-2m$
+\end_inset
+
+.
+ Changing variable 
+\begin_inset Formula $t=x-\frac{\xi}{\alpha^{2}\beta^{2}}$
+\end_inset
+
+ and denoting 
+\begin_inset Formula $a=\frac{\xi}{\alpha^{2}\beta^{2}}$
+\end_inset
+
+ we obtain: 
+\begin_inset Formula 
+\begin{eqnarray*}
+\hat{g}_{n} & = & \frac{n!e^{-\frac{\xi^{2}}{\alpha^{2}}\left(1-\frac{1}{\beta^{2}}\right)}}{\sqrt{2^{n}n!\sqrt{\pi}\sigma}}\sum_{m=0}^{[\frac{n}{2}]}\frac{(-1)^{m}\lambda^{k(n,m)}}{m!(n-2m)!}\int e^{-\beta^{2}t^{2}}(t+a)^{k(m,n)}dx
+\end{eqnarray*}
+
+\end_inset
+
+Next, we decopose sum 
+\begin_inset Formula $(t+a)^{k}$
+\end_inset
+
+ with Newton's formula:
+\begin_inset Formula 
+\[
+(t+a)^{k}=\sum_{i=0}^{k}\left(\begin{array}{c}
+k\\
+i
+\end{array}\right)t^{i}a^{k-i}
+\]
+
+\end_inset
+
+and integral will read:
+\begin_inset Formula 
+\begin{eqnarray*}
+\int e^{-\beta^{2}t^{2}}(t+a)^{k(m,n)}dx & = & \sum_{i=0}^{k(m,n)}\left(\begin{array}{c}
+k(m,n)\\
+i
+\end{array}\right)a^{k-i}\int e^{-\beta^{2}t^{2}}t^{i}\, dx\\
+ & = & \sum_{i=0}^{k(m,n)}\left(\begin{array}{c}
+k\\
+i
+\end{array}\right)\frac{1}{2}\left(1+(-1)^{i}\right)\beta^{-1-i}\Gamma\left(\frac{1+i}{2}\right)a^{k-i}\\
+ & = & \sum_{i=0,\, i-even}^{k(m,n)}\frac{k!}{2^{i}\left(\frac{i}{2}\right)!(k-i)!}\sqrt{\pi}\beta^{-1-i}a^{k-i}\\
+ & = & \sum_{i=0,\, i-even}^{n-2m}\frac{(n-2m)!}{2^{i}\left(\frac{i}{2}\right)!(n-2m-i)!}\sqrt{\pi}\beta^{-1-i}a^{n-2m-i}
+\end{eqnarray*}
+
+\end_inset
+
+here I used:
+\begin_inset Formula 
+\[
+\Gamma\left(\frac{1+i}{2}\right)=\frac{i!}{2^{i}\left(\frac{i}{2}\right)!}\sqrt{\pi}
+\]
+
+\end_inset
+
+Substituting it to the formula for 
+\begin_inset Formula $\hat{g_{n}}$
+\end_inset
+
+ we get:
+\begin_inset Formula 
+\begin{eqnarray*}
+\hat{g}_{n} & = & \frac{n!e^{-\frac{\xi^{2}}{\alpha^{2}}\left(1-\frac{1}{\alpha^{2}\beta^{2}}\right)}}{\sqrt{2^{n}n!\sqrt{\pi}\sigma}}\sum_{m=0}^{[\frac{n}{2}]}\frac{(-1)^{m}\lambda^{n-2m}}{m!(n-2m)!}\sum_{i=0,\, i-even}^{n-2m}\frac{(n-2m)!}{2^{i}\left(\frac{i}{2}\right)!(n-2m-i)!}\sqrt{\pi}\beta^{-1-i}a^{n-2m-i}\\
+ & =e^{-\frac{\xi^{2}}{\alpha^{2}}\left(1-\frac{1}{\alpha^{2}\beta^{2}}\right)} & \sqrt{\frac{n!\sqrt{\pi}}{2^{n}\sigma}}\sum_{m=0}^{[\frac{n}{2}]}\,\,\sum_{i=0,\, i-even}^{n-2m}\frac{(-1)^{m}\lambda^{n-2m}}{2^{i}\left(\frac{i}{2}\right)!(n-2m-i)!m!}\beta^{-1-i}a^{n-2m-i}\\
+ & =e^{-\frac{\xi^{2}}{\alpha^{2}}\left(1-\frac{1}{\alpha^{2}\beta^{2}}\right)} & \sqrt{\frac{n!\sqrt{\pi}}{2^{n}\sigma}}\sum_{m=0}^{[\frac{n}{2}]}\,\,\sum_{i=0,\, i-even}^{n-2m}\frac{(-1)^{m}2^{n-2m}}{2^{i}\left(\frac{i}{2}\right)!(n-2m-i)!m!\sigma^{n-2m}}\left(\beta\right)^{-1-i}\left(\frac{\xi}{\alpha^{2}\beta^{2}}\right)^{n-2m-i}\\
+ & =e^{-\frac{\xi^{2}}{\alpha^{2}}\left(1-\frac{1}{\alpha^{2}\beta^{2}}\right)} & \sqrt{\frac{n!\sqrt{\pi}}{2^{n}\sigma}}\sum_{m=0}^{[\frac{n}{2}]}\,\,\sum_{i=0,\, i-even}^{n-2m}\frac{(-1)^{m}2^{n-2m-i}}{\left(\frac{i}{2}\right)!(n-2m-i)!m!\sigma^{n-2m}}\beta^{-2n+4m+i-1}\left(\frac{\xi}{\alpha^{2}}\right)^{n-2m-i}
+\end{eqnarray*}
+
+\end_inset
+
+Finally denoting 
+\begin_inset Formula $\sum_{i=0,\, i-even}^{n-2m}=\sum_{l=0}^{[\frac{n-2m}{2}]}(i=2l)$
+\end_inset
+
+ we get the following expression for coefficients:
+\begin_inset Formula 
+\[
+\hat{g}_{n}=e^{-\xi^{2}\left(1-\frac{1}{\alpha^{2}\beta^{2}}\right)}\sqrt{\frac{n!\sqrt{\pi}}{2^{n}\sigma}}\sum_{m=0}^{[\frac{n}{2}]}\,\,\sum_{l=0}^{[\frac{n-2m}{2}]}\frac{(-1)^{m}2^{n-2m-2l}}{l!(n-2m-2l)!m!\sigma^{n-2m}}\beta^{-2n+4m+2l-1}\left(\frac{\xi}{\alpha^{2}}\right)^{n-2m-2l}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To test the validity of this formula suppose 
+\begin_inset Formula $\xi=0$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{g}_{n}\neq0$
+\end_inset
+
+ only when 
+\begin_inset Formula $n-2m-2l=0$
+\end_inset
+
+ or 
+\begin_inset Formula $l=\frac{n-2m}{2}$
+\end_inset
+
+, which can be true only if 
+\begin_inset Formula $n$
+\end_inset
+
+ is even:
+\begin_inset Formula 
+\[
+\hat{g}_{n}=\sqrt{\frac{n!\sqrt{\pi}}{2^{n}\sigma}}\sum_{m=0}^{[\frac{n}{2}]}\frac{(-1)^{m}}{\left(\frac{n-2m}{2}\right)!m!\sigma^{n-2m}}\beta^{-n+2m-1}
+\]
+
+\end_inset
+
+substituting 
+\begin_inset Formula $\beta=(\frac{1}{2\sigma^{2}}+\frac{1}{\alpha^{2}})^{\frac{1}{2}}$
+\end_inset
+
+ we get:
+\begin_inset Formula 
+\[
+\hat{g}_{n}=\sqrt{\frac{n!\sqrt{\pi}}{2^{n}\sigma}}\sum_{m=0}^{[\frac{n}{2}]}\frac{(-1)^{m}}{\left(\frac{n-2m}{2}\right)!m!\sigma^{n-2m}}\left(\frac{2\sigma^{2}\alpha^{2}}{2\sigma^{2}+\alpha^{2}}\right)^{\frac{n+1}{2}-m}
+\]
+
+\end_inset
+
+which corresponds to the previously derived expression for 
+\begin_inset Formula $f(x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The next test was performed in mathematica by direct integration and comparing
+ to this formula.
+ This was done in notebook 
+\begin_inset Quotes eld
+\end_inset
+
+ExpHermiteDecomposition.nb
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+From properties of Hermite functions basis we can now obtain coefficients
+ for 3D function:
+\begin_inset Formula 
+\[
+\hat{g}_{pqr}(\mathbf{r}_{0};\sigma,\alpha)=\hat{g}_{p}(\mathbf{x}_{0};\sigma,\alpha)\hat{g}_{q}(\mathbf{y}_{0};\sigma,\alpha)\hat{g}_{r}(\mathbf{z}_{0};\sigma,\alpha)
+\]
+
+\end_inset
+
+and finally using the property of linearity of decomposition we see that
+ the decomposition of 
+\begin_inset Formula $P(\mathbf{r})$
+\end_inset
+
+ will be just sum of decompositions of exponents:
+\begin_inset Formula 
+\[
+\hat{P}_{pqr}=\sum_{i=1}^{N}\hat{g}_{pqr}(\mathbf{r}_{i};\sigma,\alpha)
+\]
+
+\end_inset
+
+To perform calculations in-silico we sum coefficients from farthest atoms
+ to the the closest.
+ The coefficients computed this way appear to be equal to coefficients obtained
+ by integration.
+ 
+\end_layout
+
+\begin_layout Section
+Results
+\end_layout
+
+\begin_layout Standard
+The formulas for geometric invariants rapidly grow in size.
+ Even the 
+\begin_inset Formula $I_{7}^{G}$
+\end_inset
+
+ is already intractable for calculation using pen and paper.
+ So we employed computer algebra system Mathematica to execute the algorithm.
+ After substitution of solutions for 
+\begin_inset Formula $\mu_{pqr}$
+\end_inset
+
+ into 
+\begin_inset Formula $I_{k}^{G}$
+\end_inset
+
+ no futher simplifications were made.
+ Although they are possible.
+\end_layout
+
+\begin_layout Subsection
+Analitical results
+\end_layout
+
+\begin_layout Standard
+Several invariants are shown below:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+I_{0}^{HG}=M(0,0,0)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+I_{1}^{HG}=\frac{1}{4M(0,0,0)^{2}}\left(6M(0,0,0)+M(0,0,2)+M(0,2,0)+M(2,0,0)\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+I_{2}^{HG} & = & \frac{1}{16M(0,0,0)^{4}}(12M(0,0,0)^{2}+4(M(0,0,2)+M(0,2,0)+M(2,0,0))M(0,0,0)+M(0,0,2)^{2}\\
+ &  & +2M(0,1,1)^{2}+M(0,2,0)^{2}+2M(1,0,1)^{2}+2M(1,1,0)^{2}+M(2,0,0)^{2})
+\end{eqnarray*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+I_{3}^{HG} & = & \frac{1}{64M(0,0,0)^{6}}(24M(0,0,0)^{3}+12(M(0,0,2)+M(0,2,0)+M(2,0,0))M(0,0,0)^{2}\\
+ &  & +6(M(0,0,2)^{2}+2M(0,1,1)^{2}+M(0,2,0)^{2}+2M(1,0,1)^{2}+2M(1,1,0)^{2}\\
+ &  & +M(2,0,0)^{2})M(0,0,0)+M(0,0,2)^{3}+M(0,2,0)^{3}+M(2,0,0)^{3}+3M(0,2,0)M(1,1,0)^{2}\\
+ &  & +3M(0,1,1)^{2}M(0,2,0)+3M(0,0,2)\left(M(0,1,1)^{2}+M(1,0,1)^{2}\right)\\
+ &  & +6M(0,1,1)M(1,0,1)M(1,1,0)+3M(1,0,1)^{2}M(2,0,0)+3M(1,1,0)^{2}M(2,0,0))
+\end{eqnarray*}
+
+\end_inset
+
+We see that the formulas can be simplified if the previous invariants are
+ substituted in it and all constans are thrown away.
+ We haven't done this because it does not impacts neither speed nor results
+ of algorithm, but could be a source of errors.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch ScalingCoeffs
+status collapsed
+
+\begin_layout Standard
+The special case is the divisor in the beginning of each invariant.
+ It appeared because we have taken geometric invariants upon any affine
+ transformation, which includes scaling also.
+ But translations and rotations leave that divisor unchanged, so we can
+ employ it to scale each part in the sum.
+ It's reasonable to take scale factors in form:
+\begin_inset Formula 
+\[
+M^{scaled}(p,q,r)=\frac{M(p,q,r)}{M^{k}(0,0,0)}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $k=p+q+r+1$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We have checked the invariance upon acting of the rotation operator analitically
+ with the help of Mathematica.
+\end_layout
+
+\begin_layout Subsection
+Numerical results
+\end_layout
+
+\begin_layout Standard
+We have tested invariance of 
+\begin_inset Formula $I_{k}^{HG}$
+\end_inset
+
+ upon rotation.
+ The first model was the alanine amino acid molecule.
+ The molecule was previously centered at 
+\begin_inset Formula $(0,0,0)$
+\end_inset
+
+ and scaled with weight 
+\begin_inset Formula $2.0/size$
+\end_inset
+
+, where 
+\begin_inset Formula $size$
+\end_inset
+
+ is the maximum side of protein bounding box.
+ The rotation,scaling and centering was performed with the help of GROMACS
+ utilite 
+\begin_inset Quotes eld
+\end_inset
+
+editconf
+\begin_inset Quotes erd
+\end_inset
+
+.
+ The desity function of the molecule had the following form:
+\begin_inset Formula 
+\[
+f(\mathbf{r})=\sum_{i\in atoms}\exp[\frac{|\mathbf{r}-\mathbf{r}_{i}|^{2}}{asize}]
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $asize$
+\end_inset
+
+ -- size of atom, 
+\begin_inset Formula $\mathbf{r}_{i}$
+\end_inset
+
+ -- position of atom in molecule.
+ The size of atoms was taken to be 
+\begin_inset Formula $asize=0.5$
+\end_inset
+
+(changing approriatelly with scaling).
+ Integration was performed with the help of gaussian-hermite quadratures,
+ the number of samples along each axis is 
+\begin_inset Formula $N_{samples}=81$
+\end_inset
+
+, 
+\begin_inset Formula $\sigma=\frac{1}{\lambda}$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda=0.986$
+\end_inset
+
+ (taken one that minimizes decomposition error).
+ The results for some angles are shown below:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="13" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+plot
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Images/0_0_0_Protein.png
+	lyxscale 40
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Images/30_50_40_Protein.png
+	lyxscale 40
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+angles
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0,0,0)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(30,50,40)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I[0]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.9428
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.9390
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I[1]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.4619
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.4634
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I[2]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.07507
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.07559
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I[3]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.01267
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.01281
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I[4]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.001396
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.001423
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I[5]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0008929
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00090828
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I[6]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.194*10^{-6}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.2392*10^{-6}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I[7]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $9.434*10^{-7}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $9.7805*10^{-7}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I[8]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8.6315*10^{-7}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8.94081*10^{-7}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I[9]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0002384
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0002439
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I[10]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0001516
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0001551
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="13" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+plot
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Images/130_20_90_Protein.png
+	lyxscale 40
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Images/60_170_120_Protein.png
+	lyxscale 40
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+angles
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(130,20,90)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(60,170,120)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I[0]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.9418
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.9411
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I[1]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.4623
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.4627
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I[2]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.07518
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.07531
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I[3]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.01270
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.01273
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I[4]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.001383
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.001369
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I[5]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0008813
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0008426
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I[6]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.1454*10^{-6}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.116*10^{-6}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I[7]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $9.002*10^{-7}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8.537*10^{-7}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I[8]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8.2214*10^{-7}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $7.705*10^{-7}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I[9]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0002354
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0002335
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I[10]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0001496
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0001429
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Table 1: First 11 invariants are shown for different rotation angles.
+ The figures are plots of 
+\begin_inset Formula $f(\mathbf{r})=0.5$
+\end_inset
+
+ surface.
+ 
+\end_layout
+
+\begin_layout Standard
+We see that the invariants are almost the same for these angles.
+ The difference between invariants for different angles depends strongly
+ on the number 
+\begin_inset Formula $N_{samples}$
+\end_inset
+
+ of points in gaussian-hermite quadrature.
+\end_layout
+
+\begin_layout Section
+Conclusion and future work
+\end_layout
+
+\begin_layout Standard
+We have constructed rotational invariants of Hermite-Gaussian moments and
+ showed that they are indeed invariant upon rotations and derived coefficients
+ for fast decomposition of protein density function.
+ Some properties of Hermite-Gaussian functions also promise great speed
+ up in applications of the invariants to protein-protein docking and EM
+ maps fit.
+ 
+\end_layout
+
+\end_body
+\end_document

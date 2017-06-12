@@ -1,0 +1,68 @@
+Optimization problem (Eq. \ref{eq:svmSoftMargin}) can be solved by the classical method of {\em Lagrange multipliers} \cite{Boyd2004,Cortes1995}. 
+If we introduce $N\times D$ nonnegative Lagrange multipliers $\lambda_{ij}$ associated with the first set of inequality constraints  from Eq. \ref{eq:svmSoftMargin} 
+and $N\times D$ nonnegative Lagrange multipliers $\nu_{ij}$ associated with the second set of inequality constraints  from (\ref{eq:svmSoftMargin}), the solution of 
+problem in Eq. \ref{eq:svmSoftMargin} is equivalent to determining the {\em saddle point} of the following {\em Lagrangian} function:
+%$\lambda_{ij}$ for conditions $y_{ij} \left[ \mathbf{w}\cdot\mathbf{x}_{ij}-b_i \right]-1 +\xi_{ij} \geq 0$ and
+%$\nu_{ij}$ for $\xi_{ij} \geq 0$. Lagrangian will read:
+\begin{equation}
+%\mathcal{L}(\mathbf{w},\mathbf{b},{\boldsymbol \lambda},\boldsymbol{\nu})
+\mathcal{L} = \frac{\mathbf{w}\cdot\mathbf{w}}{2} + \sum_{ij}C_{ij}\xi_{ij} - \sum_{ij}\lambda_{ij} \left(y_{ij} \left[ \mathbf{w}\cdot\mathbf{x}_{ij}-b_j \right]-1 +\xi_{ij} \right)\\
+- \sum_{ij}\nu_{ij} \xi_{ij}
+\label{eq:dualEx}
+\end{equation}
+with $\mathcal{L} = \mathcal{L}(\mathbf{w},\mathbf{b},{\boldsymbol \xi},{\boldsymbol \lambda},\boldsymbol{\nu})$, where
+$\mathbf{b}=(b_1,b_2,\ldots, b_D)$,
+$\boldsymbol{\xi}=(\xi_{11},\xi_{12},\ldots, \xi_{ND})$,
+$\boldsymbol{\lambda}=(\lambda_{11},\lambda_{12},\ldots, \lambda_{ND})$, and
+$\boldsymbol{\nu}=(\nu_{11},\nu_{12},\ldots, \nu_{ND})$. At the saddle point, $\mathcal{L}$ has a minimum with respect to $\mathbf{w}$, $\mathbf{b}$ 
+and $\boldsymbol{\xi}$ and a maximum  with respect to $\boldsymbol{\lambda}$ and $\boldsymbol{\nu}$.
+According to the classical {\em  Karush-Kuhn-Tucker} (KKT) conditions \cite{Kuhn1951,Boyd2004}, 
+which is a generalization of the method of Lagrange multipliers to inequality constraints,
+the saddle point of the Lagrangian function (Eq. \ref{eq:dualEx}) satisfies four following conditions:
+%optimal Lagrange multipliers corresponding to the solution of problem (\ref{eq:svmSoftMargin}) satisfy:
+%Therefore, in the saddle point 
+%By taking partial derivatives with respect to $\mathbf{w}$, $b_{i}$ and $\xi_{ij}$ and stating them to be equal to zero (nessesary extremum conditions), we get:
+\begin{enumerate}
+\item Stationarity conditions:
+\begin{eqnarray}
+\label{eq:firstKKT}
+\frac{\partial L}{\partial \mathbf{w}} = \mathbf{w} - \sum_{ij} y_{ij}\lambda_{ij}\mathbf{x}_{ij} = 0 \\
+%\mathbf{w} = \sum_{ij} y_{ij}\lambda_{ij}\mathbf{x}_{ij}\\
+\frac{\partial L}{\partial b_j} = \sum_i y_{ij}\lambda_{ij} = 0\\
+\frac{\partial L}{\partial \xi_{ij}} = C_{ij} - \lambda_{ij} - \nu_{ij}=0
+\end{eqnarray}
+
+%besides that we have to impose extra conditions called Karush-Kuhn-Tucker (KKT) conditions :
+\item Complementary slackness conditions:
+\begin{eqnarray}
+\lambda_{ij} \left(y_{ij} \left[ \mathbf{w}\cdot\mathbf{x}_{ij}-b_j \right]-1 +\xi_{ij} \right)=0\\
+ \nu_{ij}\xi_{ij} =0
+\end{eqnarray}
+\item Primal feasibility conditions:
+\begin{eqnarray}
+y_{ij} \left[\mathbf{w}\cdot\mathbf{x}_{ij}-b_j \right]-1 +\xi_{ij} \geq 0 \\
+\xi_{ij} \geq 0
+\end{eqnarray}
+\item Dual feasibility conditions:
+\begin{eqnarray}
+\lambda_{ij} \geq 0\\
+ \nu_{ij} \geq 0
+ \label{eq:lastKKT}
+\end{eqnarray}
+\end{enumerate}
+
+Using  equation \ref{eq:dualEx} along with the aforementioned KKT conditions (Eq. \ref{eq:firstKKT} - Eq. \ref{eq:lastKKT}), we can rewrite the original optimization problem (Eq. \ref{eq:svmSoftMargin}) as:
+%\begin{eqnarray*}
+%minimize~~L^*: & \sum_{ij} \lambda_{ij} - \frac{1}{2}\sum_{ij}\sum_{kl}\lambda_{ij}\lambda_{kl}\mathbf{x}_{ij}\cdot\mathbf%{x}_{kl}\\
+%subject~~to: & 0 \leq \lambda_{ij} \leq C_{ij} \\
+%& \sum_j y_{ij}\lambda_{ij} = 0 
+%\end{eqnarray*}
+\begin{eqnarray*}
+\begin{tabular}{lc}
+Maximize $\mathcal{L}(\lambda_{ij}$):&$ \mathcal{L}(\lambda_{ij})=\sum_{ij} \lambda_{ij} - \frac{1}{2}\sum_{ij}\sum_{kl}y_{ij} y_{kl} \lambda_{ij}\lambda_{kl}\mathbf{x}_{ij}\cdot\mathbf{x}_{kl}$ \\ 
+\multirow{2}{*}{Subject to:}
+&$0 \leq \lambda_{ij} \leq C_{ij}$\\%, ~ i=1...N,~j=1...D$ \\
+&$ \sum_i y_{ij}\lambda_{ij} = 0$%,~~\forall i$
+\end{tabular}
+%\label{eq:dual} 
+\end{eqnarray*}

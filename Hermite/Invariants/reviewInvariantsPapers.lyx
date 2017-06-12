@@ -1,0 +1,245 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Paper 
+\begin_inset Quotes eld
+\end_inset
+
+geometric moment and their invariants
+\begin_inset Quotes erd
+\end_inset
+
+ review
+\end_layout
+
+\begin_layout Standard
+List of definitions:
+\end_layout
+
+\begin_layout Enumerate
+Tensor product: 
+\begin_inset Formula $A\otimes B$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Monomials: 
+\begin_inset Formula $\mathbf{x}_{(d)}=\otimes_{d}\mathbf{x}_{(1)}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbf{x}_{(1)}=\mathbf{x}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $G$
+\end_inset
+
+ acts linearly on 
+\begin_inset Formula $R^{n}$
+\end_inset
+
+ then for 
+\begin_inset Formula $A\in G$
+\end_inset
+
+: 
+\begin_inset Formula $A_{d}=\otimes_{d}A$
+\end_inset
+
+ acts on monomial as: 
+\begin_inset Formula $\hat{\mathbf{x}}_{(d)}=A_{d}\mathbf{x}_{(d)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Duality between monomials of degree 
+\begin_inset Formula $d$
+\end_inset
+
+ and moments of order 
+\begin_inset Formula $d$
+\end_inset
+
+: 
+\begin_inset Formula $M_{(d)}=*x_{(d)}$
+\end_inset
+
+ where 
+\begin_inset Formula $*:x^{\mathbf{a}}\rightarrow m_{\mathbf{a}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Rational invariant: rational function 
+\begin_inset Formula $i(M_{(0)},...,M_{(d)})$
+\end_inset
+
+ of moments that doesn't change upon act of elements of 
+\begin_inset Formula $G$
+\end_inset
+
+:
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $i(\hat{M}_{(0)},...,\hat{M}_{(d)})=(detA)^{q}i(M_{(0)},...,M_{(d)})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Covariant: function 
+\begin_inset Formula $\eta(\mathbf{x},M_{(0)},...,M_{(d)})$
+\end_inset
+
+:
+\begin_inset Formula $\eta(\hat{\mathbf{x}},\hat{M}_{(0)},...,\hat{M}_{(d)})=(detA)^{q}\eta(\mathbf{x},M_{(0)},...,M_{(d)})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\partial_{(d)}=\otimes_{d}\partial_{(1)}$
+\end_inset
+
+ and 
+\begin_inset Formula $\partial_{(1)}=\left(\begin{array}{c}
+\partial_{x_{1}}\\
+\partial_{x_{2}}\\
+...\\
+\partial_{x_{n}}
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Rationally independent: no rational function such that 
+\begin_inset Formula $F(i_{1}...i_{n})=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Rational basis: maximum set of rationally independent invariants.
+\end_layout
+
+\begin_layout Enumerate
+Transvectant: 
+\begin_inset Formula $\Lambda^{r}(P,Q)=\left(\partial_{(r)}P\right)^{T}\left(\partial_{(r)}Q\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Then, consider orthogonal group with element 
+\begin_inset Formula $A$
+\end_inset
+
+: 
+\begin_inset Formula $A_{(d)}^{T}A_{(d)}=I$
+\end_inset
+
+.
+ The covariant of this group will be 
+\begin_inset Formula $\eta_{d}=x_{(d)}^{T}M_{(d)}$
+\end_inset
+
+ : 
+\begin_inset Formula $\hat{\eta}_{d}=\hat{x}_{(d)}^{T}A_{(d)}^{T}A_{(d)}\hat{M}_{(d)}=\hat{x}_{(d)}^{T}\hat{M}_{(d)}$
+\end_inset
+
+.
+ I.e.
+ we found such quantity, that conserves under orthogonal group.
+\end_layout
+
+\begin_layout Standard
+After this moment the system of invariants is being constructed.
+\end_layout
+
+\end_body
+\end_document
