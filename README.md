@@ -1,7 +1,7 @@
 Thesis: Structure-based algorithms for protein-protein interactions
 ======
 
-![Alt text](https://github.com/lupoglaz/thesis/blob/master/Cover/logo_Univ_Grenoble.eps)
+![Alt text](https://github.com/lupoglaz/thesis/blob/master/Cover/logo_UJF_vertical_multituelles.png)
 
 ## Abstract
 The phenotype of every known living organism is determined mainly by the compli-
